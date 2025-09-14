@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Tasks\Date0709;
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class Task3 extends Controller
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Tasks\Date0709;
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class Task1 extends Controller
 {
@@ -21,5 +21,15 @@ class Task1 extends Controller
         }
 
         return $status;
+
+        //$date="123{$test}";
+        //$date2="123{$test}";
+        //$date3="123{$test}";
+
+        //$products=array(1,2,3);
+
+        //return view("test.test",['date' => $date,'date2' => $date],'date3' => $date]);
+        //return view("test.test",compact('date,date2,date3',$products));
+        //
     }
 }
