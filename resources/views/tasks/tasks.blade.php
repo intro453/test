@@ -11,9 +11,12 @@
         @for ($i = 1; $i <= 3; $i++)
             <a href="{{ route('tasks.1109.task' . $i) }}">task{{ $i }}</a><br>
         @endfor
+        <h2>Tasks1409</h2>
+        @for ($i = 1; $i <= 2; $i++)
+            <a href="{{ route('tasks.1409.task' . $i) }}">task{{ $i }}</a><br>
+        @endfor
 
     Вопросы:<br>
-        $result = Str::of($start)->finish('/'); // of????? <br>
-        На выходе Illuminate\Support\Stringable Object ( [value:protected] => A Nice Title Uses The Correct Case )
+
     </body>
 </html>

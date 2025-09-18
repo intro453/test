@@ -39,7 +39,7 @@ class Task2_1109 extends Controller
         //finish
         //Метод finish добавляет один экземпляр указанного значения в переданную строку, если она еще не заканчивается этим значением:
         $start = 'products/product123';
-        $result = Str::of($start)->finish('/'); // of?????
+        $result = Str::of($start)->finish('/')->toString(); // of?????
 
         $data['finish']['start']=$start;
         $data['finish']['result']=$result;

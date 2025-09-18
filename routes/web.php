@@ -9,6 +9,7 @@ use App\Http\Controllers\Tasks\Date0709\Task6 as Task6_0709;
 
 //use App\Http\Controllers\Tasks\Tasks;
 use App\Http\Controllers\Tasks\Date1109\{Task1_1109, Task2_1109, Task3_1109};
+use App\Http\Controllers\Tasks\Date1409\{Task1_1409_controller,Task2_1409_controller};
 
 
 use Illuminate\Support\Facades\Route;
@@ -41,6 +42,12 @@ Route::get('/tasks/0709/task6', [Task6_0709::class, 'task6'])->name('tasks.0709.
 Route::get('/tasks/1109/task1', [Task1_1109::class, 'index'])->name('tasks.1109.task1');
 Route::get('/tasks/1109/task2', [Task2_1109::class, 'index'])->name('tasks.1109.task2');
 Route::get('/tasks/1109/task3', [Task3_1109::class, 'index'])->name('tasks.1109.task3');
+
+Route::get('/tasks/1409/task1', [Task1_1409_controller::class, 'index'])->name('tasks.1409.task1');
+Route::post('/tasks/1409/task1', [Task1_1409_controller::class, 'calculate'])->name('tasks.1409.task1.calculate');
+
+Route::get('/tasks/1409/task2', [Task2_1409_controller::class, 'index'])->name('tasks.1409.task2');
+Route::post('/tasks/1409/task2', [Task2_1409_controller::class, 'calculate'])->name('tasks.1409.task2.calculate');
 
 Route::get('/', function () {
     return view('welcome');
