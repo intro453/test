@@ -14,6 +14,11 @@ use App\Http\Controllers\Tasks\Date1409\{Task1_1409_controller,Task2_1409_contro
 
 use Illuminate\Support\Facades\Route;
 
+use \App\Http\Controllers\PhotoController;
+use \App\Http\Controllers\InvokeController;
+use \App\Http\Controllers\PageController;
+
+
 //use App\Http\Controllers\Task1;
 //use App\Http\Controllers\Task2;
 //use App\Http\Controllers\Task3;
@@ -48,6 +53,11 @@ Route::post('/tasks/1409/task1', [Task1_1409_controller::class, 'calculate'])->n
 
 Route::get('/tasks/1409/task2', [Task2_1409_controller::class, 'index'])->name('tasks.1409.task2');
 Route::post('/tasks/1409/task2', [Task2_1409_controller::class, 'calculate'])->name('tasks.1409.task2.calculate');
+
+Route::get('invoke', InvokeController::class)->name('invoke');
+
+Route::get('page/{id}', [PageController::class, 'index'])->name('page')->where('id','[0-9]');
+
 
 Route::get('/', function () {
     return view('welcome');
