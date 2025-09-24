@@ -19,15 +19,15 @@ class Tasks2 extends Controller
                 if (preg_match('/^tasks\.(\d{4})\.task(\d+)$/', $name, $m)) {
                     return [
                         'date' => $m[1],
-                        'num'  => (int) $m[2],
-                        'url'  => route($name),
+                        'num' => (int)$m[2],
+                        'url' => route($name),
                     ];
                 }
                 return null;
             })
             ->filter()
             ->groupBy('date')
-            ->map(fn ($items) => $items->sortBy('num')->values());
+            ->map(fn($items) => $items->sortBy('num')->values());
 
         return view('tasks.tasks2', ['groups' => $groups]);
     }

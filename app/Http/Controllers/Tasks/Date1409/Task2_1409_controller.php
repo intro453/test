@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 
 class Task2_1409_controller extends Controller
-{
+{   //carbon задача 2
     public function index()
     {
         return view('tasks.date1409.task2');
@@ -19,9 +19,11 @@ class Task2_1409_controller extends Controller
 
         $dt = Carbon::parse($date);
 
-        $output=$dt->format('d-m-Y');
+        $output[0] = $dt->format('d-m-Y');
 
-        //TODO Изменить время на 10 часов 30 мин 15 сек. Показать дату на экран в формате ‘d/m/Y H:i:s’.
+        $dt->addHours(10)->addMinutes(30)->addSeconds(15);
+
+        $output[1] = $dt->format('d/m/Y H:i:s');
 
         return redirect()->route('tasks.1409.task2')->with('message', $output);
     }

@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
-    public function index(Request $request, $id)
+    public function index(Request $request, int $id)
     {
-        return "Это число ".$id;
+        return 'Это число ' . $id;
     }
 
 }

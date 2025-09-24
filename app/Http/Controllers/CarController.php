@@ -3,17 +3,32 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Car;
 
-class PhotoController extends Controller
+class CarController extends Controller
 {
-    //Создать ресурсный контроллер и роуты к нему. Протестировать методы index и show. php artisan make:controller PhotoController –resource
-
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return "index";
+
+        // а) все авто
+        $cars = Car::all();
+
+        // б) все авто, упорядоченные по цвету
+        $cars = Car::orderBy('color', 'desc')->get(); //почему подчеркивает orderBy?
+
+        // в) все авто, у которых год меньше 2000
+        $cars = Car::where('year', '<', 2000)->get();
+
+        // г) один авто, у которого id = 1
+        $cars = Car::where('id',1)->get();
+
+        // д) все авто красного цвета, год от 2000 до 2005 включительно, марка Audi
+        $cars = Car::where('color', 'red')->whereBetween('year', [2000, 2005])->where('make', 'Audi')->get();
+
+        return view('cars.index', compact('cars'));
     }
 
     /**
@@ -37,7 +52,7 @@ class PhotoController extends Controller
      */
     public function show(string $id)
     {
-        return "show " . $id;
+        //
     }
 
     /**

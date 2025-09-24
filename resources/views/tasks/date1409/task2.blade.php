@@ -6,7 +6,8 @@
     @csrf
 </form>
 @if(session('message'))
-    <p>{{ session('message') }}</p>
+    Задача 1 <p>{{ session('message')[0] }}</p>
+    Задача 2 <p>{{ session('message')[1] }}</p>
 @endif
 
 <br><a href="{{ route('tasks') }}">Назад</a>
