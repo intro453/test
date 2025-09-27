@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('make', 40);
             $table->string('model', 40);
             $table->integer('year');
-            $table->string('color');
+            $table->string('color')->nullable();
             $table->boolean('is_sold')->default(false);
             $table->text('description')->nullable();
             $table->timestamps(); // created_at, updated_at

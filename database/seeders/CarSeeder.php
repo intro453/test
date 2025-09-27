@@ -13,6 +13,10 @@ class CarSeeder extends Seeder
      */
     public function run(): void
     {
+        //php artisan db:seed
+        //php artisan db:seed --class=CarSeeder
+        //стоит создать папку fake для dev
+
         if (!DB::table('cars')->exists()) {
             DB::table('cars')->insert([
                 [

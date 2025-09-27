@@ -1,6 +1,3 @@
-
-
-
 <table border="1">
     <thead>
     <tr>
@@ -10,11 +7,10 @@
         <th>Цвет</th>
         <th>Статус</th>
         <th>Описание</th>
-        <th></th>
     </tr>
     </thead>
     <tbody>
-    @foreach($cars as $car)
+
         <tr>
             <td>{{ $car->make }}</td>
             <td>{{ $car->model }}</td>
@@ -28,10 +24,14 @@
                 @endif
             </td>
             <td>{{ $car->description }}</td>
-            <td><a href="{{route('cars.show',$car?->id)}}">посмотреть</a></td>
         </tr>
-    @endforeach
+
     </tbody>
 </table>
+<br><br>
+@if(session('message'))
+    <p>{{ session('message') }}</p>
+@endif
+<br><br>
 
-<a href="{{route('cars.create')}}">Добавить машину</a>
+<a href="{{route('cars.index')}}">назад</a>

@@ -17,7 +17,9 @@ use App\Http\Controllers\Tasks\Date1409\{
     Task5_1409_controller,
     Task6_1409_controller,
     Task8_1409_controller,
-    Task10_1409_controller
+    Task10_1409_controller,
+    Task12_1409_controller,
+    Task14_1409_controller,
 };
 
 
@@ -76,6 +78,7 @@ Route::group(['prefix' => '/tasks/1409', 'as' => 'tasks.1409.'], function () {
     Route::get('task8', [Task8_1409_controller::class, 'index'])->name('task8');
     Route::get('task10', [Task10_1409_controller::class, 'index'])->name('task10');
     Route::get('task12', [Task12_1409_controller::class, 'index'])->name('task12');
+    Route::get('task14', [Task14_1409_controller::class, 'index'])->name('task14');
 });
 
 //разные уровни вложенности
@@ -97,8 +100,10 @@ Route::resource('photos', PhotoController::class)->only([
 ]);
 
 Route::resource('cars', CarController::class)->only([
-    'index'
+    'index', 'show', 'create', 'store'
 ]);
+
+
 
 //invoke
 Route::get('invoke', InvokeController::class)->name('invoke');

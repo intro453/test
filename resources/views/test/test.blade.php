@@ -11,7 +11,7 @@ echo {{$test}}
 echo {!! $test !!} без экранирования
 
 Названия в массивах через _
-(gist - хранилище функций)
+(gist - хранилище функций github)
 
 // of?????
 $result = Str::of($start)->finish('/')->toString();
