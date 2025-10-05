@@ -5,7 +5,7 @@
 @endforeach
 
 <form action="{{route('cars.store')}}" method="POST">
-    Марка <input type="text" name="make" value="{{ old('make') }}"><br>
+    Марка <input type="text" name="make" value="{{ old('make','Toyota') }}"><br>
     Модель <input type="text" name="model" value="{{ old('model') }}"><br>
     Год <input type="text" name="year" value="{{ old('year') }}"><br>
     <input type="submit" value="Добавить">
