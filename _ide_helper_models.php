@@ -14,6 +14,33 @@
 namespace App\Models{
 /**
  * @property int $id
+ * @property string $make
+ * @property string $model
+ * @property int $year
+ * @property string|null $color
+ * @property int $is_sold
+ * @property string|null $description
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Car newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Car newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Car query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Car whereColor($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Car whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Car whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Car whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Car whereIsSold($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Car whereMake($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Car whereModel($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Car whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Car whereYear($value)
+ */
+	class Car extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * @property int $id
  * @property string $name
  * @property string $email
  * @property \Illuminate\Support\Carbon|null $email_verified_at

@@ -99,9 +99,8 @@ Route::resource('photos', PhotoController::class)->only([
     'index', 'show'
 ]);
 
-Route::resource('cars', CarController::class)->only([
-    'index', 'show', 'create', 'store'
-]);
+Route::resource('cars', CarController::class)->except(['destroy']);
+Route::get('cars/{car}/delete/{action?}', [CarController::class, 'destroy'])->name('cars.destroy');
 
 
 

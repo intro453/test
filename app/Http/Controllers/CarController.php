@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Cars\StoreRequest;
 use Illuminate\Http\Request;
 use App\Models\Car;
 use Illuminate\Support\Facades\Validator;
@@ -15,6 +16,14 @@ class CarController extends Controller
     {
 
         /*
+         * $questions = Question::all();
+        $questions = Question::get();
+        $questions = Question::withTrashed()->get();
+        $questions = Question::onlyTrashed()->get();
+        //Question::onlyTrashed()->restore();
+        //Question::where('id', 1)->forceDelete();
+        //Question::create([]);
+        //Question::forceCreate([]); // без fillable
 
         // б) все авто, упорядоченные по цвету
         $cars = Car::orderBy('color', 'desc')->get(); //почему подчеркивает orderBy? php artisan ide-helper:models
@@ -34,7 +43,11 @@ class CarController extends Controller
         $cars = Car::where('color', 'red')->whereBetween('year', [2000, 2005])->where('make', 'Audi')->get();
         //abort(404);
          */
-        $cars = Car::all();
+        //$cars = Car::all();
+
+        $cars = Car::withTrashed()->get();
+
+
 
         return view('cars.index', compact('cars'));
     }
@@ -50,7 +63,7 @@ class CarController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
 
         /*
@@ -96,7 +109,7 @@ class CarController extends Controller
 
 
         //есть аналог попроще //$request->validate() сам возвращает ошибки и значения
-        $validator = Validator::make($request->all(), [
+        /*$validator = Validator::make($request->all(), [
             'make' => 'required|string|min:2|max:40',
             'model' => 'required|string|min:2|max:40',
             'year' => 'required|integer|min:1990',
@@ -109,6 +122,9 @@ class CarController extends Controller
         }
 
         $car = Car::create($validator->validated());
+        */
+
+        $car = Car::create($request->validated());
         return redirect()->route('cars.show', [$car->id])
             ->with('message', 'Данные сохранены');
     }
@@ -138,7 +154,8 @@ class CarController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $car = Car::findorfail($id);
+        return view('cars.edit', compact( 'car'));
     }
 
     /**
@@ -146,14 +163,64 @@ class CarController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $car = Car::findOrFail($id);
+
+        $validator = Validator::make($request->all(), [
+            'make' => 'string|min:2|max:40',
+            'model' => 'string|min:2|max:40',
+            'year' => 'string',
+            'color' => 'string',
+            'is_sold' => 'integer',
+            'description' => 'string',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->route('cars.edit', [$car->id])
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        //dd($request->all());
+
+//        $question->update([
+//            'name' => $request->name,
+//            //...
+//        ]);
+
+        $data = $validator->validated();
+
+        $car->update($data);
+
+        // Question::where('id', $id)->update($request->validated());
+
+        return redirect()->route('cars.edit', [$car->id])
+            ->with('message', 'Данные сохранены');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id, $action = 'softDelete')
     {
-        //
+        $car = Car::withTrashed()->findOrFail($id);
+
+        switch ($action) {
+            case 'repair':
+                $car->restore();
+                $msg = 'Автомобиль восстановлен';
+                break;
+
+            case 'hardDelete':
+                $car->forceDelete();
+                $msg = 'Автомобиль удалён полностью';
+                break;
+
+            default:
+                $car->delete();
+                $msg = 'Автомобиль перемещён в корзину';
+                break;
+        }
+
+        return redirect()->route('cars.index')->with('message', $msg);
     }
 }
