@@ -16,12 +16,24 @@ class Car extends Model
     use SoftDeletes;
     use Prunable;
 
-    protected $fillable = ['make', 'model', 'year', 'color', 'is_sold', 'description']; //возьмет только их остальное выкинет
-    // protected $guarded = ['id']; // вместе с fillable нельзя!
+    //protected $fillable = ['make', 'model', 'year', 'color', 'is_sold', 'description']; //возьмет только их остальное выкинет
+    protected $guarded = ['id']; // вместе с fillable нельзя!
+    protected $casts = [
+        'is_sold' => 'boolean'
+    ];
 
     public function prunable(): Builder
     {
         return static::where('created_at', '<=', now()->subMonth());
+    }
+
+    public function getFullDescription()
+    {
+        // Берём все значения полей модели
+        $values = $this->getAttributes();
+
+        // Склеиваем через запятую
+        return implode(', ', $values);
     }
 
 }

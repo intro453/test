@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LandingController;
 use App\Http\Controllers\Tasks\Date0709\Task1 as Task1_0709;
 use App\Http\Controllers\Tasks\Date0709\Task2 as Task2_0709;
 use App\Http\Controllers\Tasks\Date0709\Task3 as Task3_0709;
@@ -99,8 +100,9 @@ Route::resource('photos', PhotoController::class)->only([
     'index', 'show'
 ]);
 
-Route::resource('cars', CarController::class)->except(['destroy']);
 Route::get('cars/{car}/delete/{action?}', [CarController::class, 'destroy'])->name('cars.destroy');
+Route::resource('cars', CarController::class)->except(['destroy']);
+
 
 
 
@@ -113,3 +115,7 @@ Route::get('page/{id}', [PageController::class, 'index'])->name('page')->where('
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('landing/',[LandingController::class, 'index'])->name('landing');
+Route::get('landing/blog/',[LandingController::class, 'blogShow'])->name('landing.blog');
+Route::get('landing/blog/{id}', [LandingController::class, 'blogArticleShow'])->name('landing.blog_article')->where('id', '[0-9]+');

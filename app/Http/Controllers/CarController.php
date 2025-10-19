@@ -200,7 +200,7 @@ class CarController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id, $action = 'softDelete')
+    public function destroy(string $id, $action = 'soft_delete')
     {
         $car = Car::withTrashed()->findOrFail($id);
 
@@ -210,7 +210,7 @@ class CarController extends Controller
                 $msg = 'Автомобиль восстановлен';
                 break;
 
-            case 'hardDelete':
+            case 'hard_delete':
                 $car->forceDelete();
                 $msg = 'Автомобиль удалён полностью';
                 break;
