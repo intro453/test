@@ -26,43 +26,47 @@
 
                 <div class="col-lg-8 entries">
 
-                    <article class="entry">
+                    @forelse($articles as $article)
+                        <article class="entry">
 
-                        <div class="entry-img">
-                            <img src="assets/img/blog/blog-1.jpg" alt="" class="img-fluid">
-                        </div>
-
-                        <h2 class="entry-title">
-                            <a href="blog-single.html">Dolorum optio tempore voluptas dignissimos cumque fuga qui quibusdam quia</a>
-                        </h2>
-
-                        <div class="entry-meta">
-                            <ul>
-                                <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="{{ route('landing.blog_article',1) }}">John Doe</a></li>
-                                <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="{{ route('landing.blog_article',1) }}"><time datetime="2020-01-01">Jan 1, 2020</time></a></li>
-                                <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="{{ route('landing.blog_article',1) }}">12 Comments</a></li>
-                            </ul>
-                        </div>
-
-                        <div class="entry-content">
-                            <p>
-                                Similique neque nam consequuntur ad non maxime aliquam quas. Quibusdam animi praesentium. Aliquam et laboriosam eius aut nostrum quidem aliquid dicta.
-                                Et eveniet enim. Qui velit est ea dolorem doloremque deleniti aperiam unde soluta. Est cum et quod quos aut ut et sit sunt. Voluptate porro consequatur assumenda perferendis dolore.
-                            </p>
-                            <div class="read-more">
-                                <a href="{{ route('landing.blog_article',1) }}">Read More</a>
+                            <div class="entry-img">
+                                <img src="assets/img/blog/blog-1.jpg" alt="" class="img-fluid">
                             </div>
+
+                            <h2 class="entry-title">
+                                <a href="{{ route('landing.blog_article', $article->slug) }}">{{ $article->title }}</a>
+                            </h2>
+
+                            @includeIf('landing.parts.blog_article_info')
+
+                            <div class="entry-content">
+                                <p>
+                                    {{ $article->short_description }}
+                                </p>
+                                <div class="read-more">
+                                    <a href="{{ route('landing.blog_article', $article->slug) }}">Read More</a>
+                                </div>
+                            </div>
+
+                        </article><!-- End blog entry -->
+
+                    @empty
+                        <div>
+                            Статьи не найдены
                         </div>
+                    @endforelse
 
-                    </article><!-- End blog entry -->
+                    @if( $articles->isNotEmpty() )
+                        {{ $articles->links('vendor.pagination.bootstrap-4') }}
+                        {{--<div class="blog-pagination">
+                            <ul class="justify-content-center">
+                                <li><a href="#">1</a></li>
+                                <li class="active"><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                            </ul>
+                        </div>--}}
+                    @endif
 
-                    <div class="blog-pagination">
-                        <ul class="justify-content-center">
-                            <li><a href="#">1</a></li>
-                            <li class="active"><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                        </ul>
-                    </div>
 
                 </div><!-- End blog entries list -->
 

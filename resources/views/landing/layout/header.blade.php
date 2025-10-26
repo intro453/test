@@ -9,12 +9,12 @@
 
         <nav id="navbar" class="navbar">
             <ul>
-                <li><a class="nav-link scrollto active" href="/landing/#hero">Home</a></li>
+                <li><a class="nav-link scrollto @if(Request::is('landing')) active @endif" href="/landing/#hero">Home</a></li>
                 <li><a class="nav-link scrollto" href="/landing/#about">About</a></li>
                 <li><a class="nav-link scrollto" href="/landing/#services">Services</a></li>
                 <li><a class="nav-link scrollto" href="/landing/#portfolio">Portfolio</a></li>
                 <li><a class="nav-link scrollto" href="/landing/#team">Team</a></li>
-                <li><a href="{{ route('landing.blog' )}}">Blog</a></li>
+                <li><a class="nav-link @if(Route::currentRouteName() == 'landing.blog') active @endif" href="{{ route('landing.blog' )}}">Blog</a></li>
                 <li class="dropdown"><a href="/landing/"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
                     <ul>
                         <li><a href="#">Drop Down 1</a></li>

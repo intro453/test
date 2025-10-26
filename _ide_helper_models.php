@@ -14,19 +14,47 @@
 namespace App\Models{
 /**
  * @property int $id
+ * @property string $title
+ * @property string $slug
+ * @property string|null $description
+ * @property string $status
+ * @property string|null $published_at
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Article newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Article newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Article query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article wherePublishedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereUpdatedAt($value)
+ */
+	class Article extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * @property int $id
  * @property string $make
  * @property string $model
  * @property int $year
  * @property string|null $color
- * @property int $is_sold
+ * @property bool $is_sold
  * @property string|null $description
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
  * @method static \Illuminate\Database\Eloquent\Builder|Car newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Car newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Car onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Car query()
  * @method static \Illuminate\Database\Eloquent\Builder|Car whereColor($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Car whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Car whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Car whereDescription($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Car whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Car whereIsSold($value)
@@ -34,8 +62,33 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Car whereModel($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Car whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Car whereYear($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Car withTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Car withoutTrashed()
  */
 	class Car extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * @property int $id
+ * @property string $name
+ * @property string $email
+ * @property string $subject
+ * @property string $message
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Feedback newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Feedback newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Feedback query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Feedback whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Feedback whereEmail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Feedback whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Feedback whereMessage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Feedback whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Feedback whereSubject($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Feedback whereUpdatedAt($value)
+ */
+	class Feedback extends \Eloquent {}
 }
 
 namespace App\Models{
