@@ -1123,7 +1123,7 @@
 
                             <div class="col-md-12 text-center">
                                 <div class="loading">Loading</div>
-                                <div class="error-message">{{ session('error') }}</div>
+                                <div class="error-message">Ошибка</div>
                                 <div class="sent-message">Успех</div>
 
                                 <button type="submit">Send Message</button>
