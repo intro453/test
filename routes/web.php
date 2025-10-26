@@ -30,7 +30,7 @@ use \App\Http\Controllers\PhotoController;
 use \App\Http\Controllers\CarController;
 use \App\Http\Controllers\InvokeController;
 use \App\Http\Controllers\PageController;
-
+use App\Http\Controllers\FeedbackController;
 
 //use App\Http\Controllers\Task1;
 //use App\Http\Controllers\Task2;
@@ -118,4 +118,5 @@ Route::get('/', function () {
 
 Route::get('landing/',[LandingController::class, 'index'])->name('landing');
 Route::get('landing/blog/',[LandingController::class, 'blogShow'])->name('landing.blog');
-Route::get('landing/blog/{id}', [LandingController::class, 'blogArticleShow'])->name('landing.blog_article')->where('id', '[0-9]+');
+Route::get('landing/blog/{slug}', [LandingController::class, 'blogArticleShow'])->name('landing.blog_article');
+Route::post('landing/feedback', [FeedbackController::class, 'store'])->name('landing.feedback_store');
