@@ -163,6 +163,7 @@ return [
         /*
          * Application Service Providers...
          */
+        //Mews\Captcha\CaptchaServiceProvider::class, // зачем? и без него почемуто работает? и мы чтото в env обавляли
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,

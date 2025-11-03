@@ -7,7 +7,10 @@
 <form action="{{route('cars.store')}}" method="POST">
     Марка <input type="text" name="make" value="{{ old('make','Toyota') }}"><br>
     Модель <input type="text" name="model" value="{{ old('model') }}"><br>
-    Год <input type="text" name="year" value="{{ old('year') }}"><br>
+    Год <input type="text" name="year" value="{{ old('year') }}"><br><br><br>
+    {!! captcha_img('flat') !!}<br>
+    <input type="text" name="captcha"><br>
+
     <input type="submit" value="Добавить">
     @csrf
 </form>

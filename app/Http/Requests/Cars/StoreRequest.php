@@ -25,6 +25,7 @@ class StoreRequest extends FormRequest
             'make' => 'required|string|min:2|max:40',
             'model' => 'required|string|min:2|max:40',
             'year' => 'required|integer|min:1990',
+            'captcha'=> 'required|captcha',
         ];
     }
 
@@ -32,6 +33,8 @@ class StoreRequest extends FormRequest
     {
         return [
             'make.min' => 'Слишком короткая марка',
+            'captcha.required' => 'Введите капчу',
+            'captcha.captcha'  => 'Неверно введена капча'
         ];
     }
 }

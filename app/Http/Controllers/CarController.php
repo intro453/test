@@ -6,6 +6,7 @@ use App\Http\Requests\Cars\StoreRequest;
 use Illuminate\Http\Request;
 use App\Models\Car;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\ValidationException;
 
 class CarController extends Controller
 {
@@ -62,9 +63,12 @@ class CarController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     * @throws ValidationException
      */
     public function store(StoreRequest $request)
     {
+
+
 
         /*
         $validator = Validator::make($request->all(), [
