@@ -1,6 +1,25 @@
 
 
 {{__('my.greeting')}}
+@if(!$name)
+    <form action="{{ route('plugin.remember.name') }}" method="POST">
+        @csrf
+        <label>Введите ваше имя:</label>
+        <input type="text" name="username" placeholder="Ваше имя">
+        <button type="submit">Сохранить</button>
+
+        @error('username')
+        <div style="color:red">{{ $message }}</div>
+        @enderror
+    </form>
+@else
+    <h3>Привет, {{ $name }}!</h3>
+
+    <form action="{{ route('plugin.forget.name') }}" method="POST">
+        @csrf
+        <button type="submit">Забыть меня</button>
+    </form>
+@endif
 
 <table border="1">
     <thead>

@@ -13,7 +13,7 @@ class CarController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
 
         /*
@@ -46,9 +46,29 @@ class CarController extends Controller
          */
         //$cars = Car::all();
 
+        $name = $request->session()->get('username');
+
         $cars = Car::withTrashed()->get();
 
-        return view('cars.index', compact('cars'));
+        return view('cars.index', compact('cars', 'name'));
+    }
+
+    public function rememberName(Request $request)
+    {
+        $request->validate([
+            'username' => 'required|min:2|max:40'
+        ]);
+
+        $request->session()->put('username', $request->username);
+
+        return redirect()->route('cars.index');
+    }
+
+    public function forgetName(Request $request)
+    {
+        $request->session()->forget('username');
+
+        return redirect()->route('cars.index');
     }
 
     /**

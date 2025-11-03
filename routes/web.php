@@ -11,6 +11,7 @@ use App\Http\Controllers\Tasks\Date0709\Task6 as Task6_0709;
 //use App\Http\Controllers\Tasks\Tasks;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Tasks\Date1109\{Task1_1109, Task2_1109, Task3_1109};
+
 use App\Http\Controllers\Tasks\Date1409\{
     Task1_1409_controller,
     Task2_1409_controller,
@@ -24,6 +25,7 @@ use App\Http\Controllers\Tasks\Date1409\{
     Task14_1409_controller,
 };
 
+use App\Http\Controllers\Tasks\Date0311\Task1_0311_controller;
 
 use Illuminate\Support\Facades\Route;
 
@@ -103,6 +105,10 @@ Route::resource('photos', PhotoController::class)->only([
 
 Route::get('cars/{car}/delete/{action?}', [CarController::class, 'destroy'])->name('cars.destroy');
 Route::resource('cars', CarController::class)->except(['destroy']);
+Route::post('/remember-name', [CarController::class, 'rememberName'])->name('plugin.remember.name');
+Route::post('/forget-name', [CarController::class, 'forgetName'])->name('plugin.forget.name');
+
+
 Route::get('users/{id}/cars', [UserController::class, 'cars'])->name('users.cars');
 
 
@@ -121,3 +127,7 @@ Route::get('landing/',[LandingController::class, 'index'])->name('landing');
 Route::get('landing/blog/',[LandingController::class, 'blogShow'])->name('landing.blog');
 Route::get('landing/blog/{slug}', [LandingController::class, 'blogArticleShow'])->name('landing.blog_article');
 Route::post('landing/feedback', [FeedbackController::class, 'store'])->name('landing.feedback_store');
+
+
+Route::get('/tasks/0311/task1', [Task1_0311_controller::class, 'index'])->name('tasks.0311.task1');
+Route::post('/tasks/0311/task1', [Task1_0311_controller::class, 'calculate'])->name('tasks.0311.task1.calculate');
