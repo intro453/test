@@ -1,6 +1,7 @@
 <table border="1">
     <thead>
     <tr>
+        <th>User</th>
         <th>Марка</th>
         <th>Модель</th>
         <th>Год</th>
@@ -12,10 +13,12 @@
     <tbody>
 
         <tr>
+            <td><a href="{{route('users.cars',$car?->user_id)}}">{{ $userName }}</a></td>
             <td>{{ $car->make }}</td>
             <td>{{ $car->model }}</td>
             <td>{{ $car->year }}</td>
             <td>{{ $car->color }}</td>
+
             <td>
                 @if($car->is_sold)
                     <span class="text-danger">Продан</span>

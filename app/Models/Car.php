@@ -36,4 +36,9 @@ class Car extends Model
         return implode(', ', $values);
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class); // к одному
+    }
+
 }

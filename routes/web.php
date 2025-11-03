@@ -9,6 +9,7 @@ use App\Http\Controllers\Tasks\Date0709\Task5 as Task5_0709;
 use App\Http\Controllers\Tasks\Date0709\Task6 as Task6_0709;
 
 //use App\Http\Controllers\Tasks\Tasks;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\Tasks\Date1109\{Task1_1109, Task2_1109, Task3_1109};
 use App\Http\Controllers\Tasks\Date1409\{
     Task1_1409_controller,
@@ -102,7 +103,7 @@ Route::resource('photos', PhotoController::class)->only([
 
 Route::get('cars/{car}/delete/{action?}', [CarController::class, 'destroy'])->name('cars.destroy');
 Route::resource('cars', CarController::class)->except(['destroy']);
-
+Route::get('users/{id}/cars', [UserController::class, 'cars'])->name('users.cars');
 
 
 

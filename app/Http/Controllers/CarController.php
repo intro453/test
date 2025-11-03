@@ -48,8 +48,6 @@ class CarController extends Controller
 
         $cars = Car::withTrashed()->get();
 
-
-
         return view('cars.index', compact('cars'));
     }
 
@@ -147,10 +145,11 @@ class CarController extends Controller
 //        abort(404);
 
         //$question = Question::find($id);
-
-
         $car = Car::findorfail($id);
-        return view('cars.show', compact( 'car'));
+
+        $userName = $car->user->name;
+
+        return view('cars.show', compact( 'car', 'userName'));
     }
 
     /**
