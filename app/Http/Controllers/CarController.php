@@ -53,6 +53,15 @@ class CarController extends Controller
         return view('cars.index', compact('cars', 'name'));
     }
 
+    public function carsN1(){
+
+
+        $cars = Car::with('user.company')->get(); //n+1 with
+
+
+        return view('cars.n1', compact('cars'));
+    }
+
     public function rememberName(Request $request)
     {
         $request->validate([

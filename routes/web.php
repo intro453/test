@@ -104,7 +104,10 @@ Route::resource('photos', PhotoController::class)->only([
 ]);
 
 Route::get('cars/{car}/delete/{action?}', [CarController::class, 'destroy'])->name('cars.destroy');
+Route::get('cars/n1', [CarController::class, 'carsN1'])->name('cars.N1');
 Route::resource('cars', CarController::class)->except(['destroy']);
+
+
 Route::post('/remember-name', [CarController::class, 'rememberName'])->name('plugin.remember.name');
 Route::post('/forget-name', [CarController::class, 'forgetName'])->name('plugin.forget.name');
 
